@@ -19,10 +19,10 @@ export default function Home() {
 
 	// console.log(getTags());
 
-	const showEditModal = (id) => {
-		console.log(id);
-		setShowModal(true);
-	};
+	// const showEditModal = (id) => {
+	// 	console.log(id);
+	// 	setShowModal(true);
+	// };
 
 	return (
 		<>
@@ -59,7 +59,9 @@ export default function Home() {
 					title={modalState.type}
 					close={(e) => setModalState({ show: false, type: null })}
 				>
-					<TodoForm values={{ title: 'Tag', tag: 'home' }} />
+					<TodoForm
+						values={modalState.type === 'edit' && { title: 'Tag', tag: 'home' }}
+					/>
 				</Modal>
 			)}
 		</>

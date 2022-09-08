@@ -32,9 +32,15 @@ export default function Home() {
 					{todos.length !== 0 &&
 						todos
 							.filter((todo) => todo.tag === id)
-							.map((todo) => <Todo showEdit={(id) =>
-									setModalState({ show: true, type: 'Edit '})
-								} key={todo.id} todo={todo} />)}
+							.map((todo) => (
+								<Todo
+									showEdit={(id) =>
+										setModalState({ show: true, type: 'Edit ' })
+									}
+									key={todo.id}
+									todo={todo}
+								/>
+							))}
 					<div
 						className='splite-row splite-center mt'
 						onClick={(e) =>
@@ -54,7 +60,9 @@ export default function Home() {
 					title={modalState.type}
 					close={(e) => setModalState({ show: false, type: null })}
 				>
-					<TodoForm values={modalState.type === "edit" : { title: 'Tag', tag: 'home' }} />
+					<TodoForm
+						values={modalState.type === 'edit' && { title: 'Tag', tag: 'home' }}
+					/>
 				</Modal>
 			)}
 		</>

@@ -7,14 +7,17 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 // Comp
 import Todo from '../../components/Todo';
 import Modal from '../../components/Modal';
-import NewTodo from '../../components/NewTodo';
+import TodoForm from '../../components/TodoForm';
 import { Plus } from 'react-feather';
 
 // import { datetimeToDate } from '../helpers/datetime';
 
 export default function Home() {
 	const { todos } = useTodos();
-	const [showModal, setShowModal] = useState(false);
+	const [modalState, setModalState] = useState({
+		show: false,
+		type: null,
+	});
 	const router = useRouter();
 	const { id } = router.query;
 
@@ -29,21 +32,32 @@ export default function Home() {
 					{todos.length !== 0 &&
 						todos
 							.filter((todo) => todo.tag === id)
-							.map((todo) => <Todo key={todo.id} todo={todo} />)}
+							.map((todo) => <Todo 	showEdit={(id) =>
+									setModalState({ show: true, type: 'Edit ' + id })
+								} key={todo.id} todo={todo} />)}
 					<div
 						className='splite-row splite-center mt'
-						onClick={(e) => setShowModal(true)}
+						onClick={(e) =>
+							setModalState({
+								show: true,
+								type: 'add',
+							})
+						}
 					>
 						<Plus />
 						Add Todo
 					</div>
 				</section>
 			</div>
-			{showModal && (
-				<Modal title='New Todo' setShowModal={setShowModal}>
-					<NewTodo />
+			{modalState.show && (
+				<Modal
+					title={modalState.type}
+					close={(e) => setModalState({ show: false, type: null })}
+				>
+					<TodoForm values={modalState.type === "edit" : { title: 'Tag', tag: 'home' }} />
 				</Modal>
 			)}
+		</>
 		</>
 	);
 }

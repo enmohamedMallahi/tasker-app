@@ -32,8 +32,8 @@ export default function Home() {
 					{todos.length !== 0 &&
 						todos
 							.filter((todo) => todo.tag === id)
-							.map((todo) => <Todo 	showEdit={(id) =>
-									setModalState({ show: true, type: 'Edit ' + id })
+							.map((todo) => <Todo showEdit={(id) =>
+									setModalState({ show: true, type: 'Edit '})
 								} key={todo.id} todo={todo} />)}
 					<div
 						className='splite-row splite-center mt'
@@ -57,7 +57,6 @@ export default function Home() {
 					<TodoForm values={modalState.type === "edit" : { title: 'Tag', tag: 'home' }} />
 				</Modal>
 			)}
-		</>
 		</>
 	);
 }

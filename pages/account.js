@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
-const account = () => {
+const Account = () => {
 	const { user } = useAuth();
 	console.log(user);
 
@@ -18,4 +18,4 @@ const account = () => {
 	);
 };
 
-export default account;
+export default Account;

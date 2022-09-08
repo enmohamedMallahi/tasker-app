@@ -49,7 +49,7 @@ const Sidebar = () => {
 			{showTags && (
 				<>
 					{tags.map((tag) => (
-						<Link href={`/tag/${tag}`}>
+						<Link key={tag} href={`/tag/${tag}`}>
 							<div className='splite-row splite-center mb'>
 								<Command />
 								<h4>{tag}</h4>

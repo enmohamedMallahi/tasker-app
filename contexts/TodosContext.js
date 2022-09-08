@@ -34,6 +34,8 @@ export const TodosProvider = ({ children }) => {
 			});
 
 			return () => unsubscribe();
+		} else {
+			setLoading(false);
 		}
 	}, [user]);
 

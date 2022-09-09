@@ -4,7 +4,7 @@ import { useTodos } from '../contexts/TodosContext';
 
 const TodoForm = ({ values }) => {
 	const { addTodo, getTags } = useTodos();
-	const tags = getTags();
+	const tags = ['inbox', 'home', 'work', 'learning'];
 
 	const [title, setTitle] = useState(values ? values.title : '');
 	const [tag, setTag] = useState(values ? values.tag : tags[0]);

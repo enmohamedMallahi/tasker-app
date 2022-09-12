@@ -5,16 +5,24 @@ import Sidebar from '../components/Sidebar';
 import '../styles/main.scss';
 
 function MyApp({ Component, pageProps }) {
+	if (Component.getLayout) {
+		return (
+			<AuthProvider>
+				<TodosProvider>
+					{Component.getLayout(<Component {...pageProps} />)}
+				</TodosProvider>
+			</AuthProvider>
+		);
+	}
+
 	return (
 		<AuthProvider>
 			<TodosProvider>
 				<Navbar />
-				<section>
-					<Sidebar />
-					<main className='container'>
-						<Component {...pageProps} />
-					</main>
-				</section>
+				<Sidebar />
+				<main className='container'>
+					<Component {...pageProps} />
+				</main>
 			</TodosProvider>
 		</AuthProvider>
 	);

@@ -4,7 +4,7 @@ import GoogleIcon from '../public/google.svg';
 
 import { useAuth } from '../contexts/AuthContext';
 
-export default function SignUp() {
+export default function SignIn() {
 	const { user, signin } = useAuth();
 
 	return (
@@ -23,3 +23,19 @@ export default function SignUp() {
 		</div>
 	);
 }
+
+SignIn.getLayout = (page) => {
+	return (
+		<div
+			style={{
+				width: '100vw',
+				height: '100vh',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+			}}
+		>
+			{page}
+		</div>
+	);
+};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { auth } from '../config/firebase';
 import {
 	GoogleAuthProvider,
@@ -13,6 +14,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
 	const provider = new GoogleAuthProvider();
+	const router = useRouter();
 
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -36,6 +38,14 @@ export const AuthProvider = ({ children }) => {
 
 		return () => unsubscribe();
 	}, []);
+
+	useEffect(() => {
+		if (!user) {
+			router.push('/signin');
+		} else {
+			router.push('/');
+		}
+	}, [user]);
 
 	const signin = async (email, password) => {
 		try {

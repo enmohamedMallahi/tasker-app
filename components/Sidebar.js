@@ -23,41 +23,42 @@ const Sidebar = () => {
 
 	return (
 		<aside className='container' ref={listRef}>
-			<div className='splite-row splite-center mb'>
-				<Inbox />
-				<h4>Inbox</h4>
-			</div>
+			<Link href={`/tag/inbox`}>
+				<div className='splite-row splite-center mb'>
+					<Inbox />
+					<h4>Inbox</h4>
+				</div>
+			</Link>
 			<div className='splite-row splite-center mb'>
 				<Calendar />
 				<h4>Today</h4>
 			</div>
-			<div className='splite-row splite-center mb'>
-				<Archive />
-				<h4>Archive</h4>
-			</div>
-			<div className='splite-row splite-center mb'>
-				<Trash2 />
-				<h4>Trash</h4>
-			</div>
+
 			<div
 				onClick={(e) => setShowTags((p) => !p)}
 				className='splite-row splite-center mb'
 			>
 				{showTags ? <ChevronDown /> : <ChevronRight />}
-				<h4>Label</h4>
+				<h4>Projects</h4>
 			</div>
 			{showTags && (
 				<>
-					{tags.map((tag) => (
-						<Link key={tag} href={`/tag/${tag}`}>
-							<div className='splite-row splite-center mb'>
-								<Command />
-								<h4>{tag}</h4>
-							</div>
-						</Link>
-					))}
+					{tags
+						.filter((tag) => tag !== 'inbox')
+						.map((tag) => (
+							<Link key={tag} href={`/tag/${tag}`}>
+								<div className='splite-row splite-center mb'>
+									<Command />
+									<h4>{tag}</h4>
+								</div>
+							</Link>
+						))}
 				</>
 			)}
+			<div className='splite-row splite-center mb'>
+				<Archive />
+				<h4>Archive</h4>
+			</div>
 		</aside>
 	);
 };

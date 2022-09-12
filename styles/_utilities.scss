@@ -1,0 +1,71 @@
+.container {
+	padding: 1rem 1.5rem;
+}
+
+%btn {
+	padding: 0.5rem;
+	outline: none;
+	border-radius: 5px;
+	transition: all 0.3s ease;
+
+	&[disabled] {
+		background-color: #7c6868;
+	}
+
+	&:hover {
+		opacity: 0.8;
+		cursor: pointer;
+	}
+}
+
+.btn {
+	@extend %btn;
+	border: 1px solid $primary-color;
+	background-color: $primary-color;
+	color: #fff;
+}
+
+.btn-accent {
+	@extend %btn;
+	border: 1px solid #189718;
+	background-color: #189718;
+	color: #fff;
+}
+
+.btn-icon {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	img {
+		width: 1.5rem;
+	}
+}
+
+// Grid
+
+.splite-row {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	flex-direction: row;
+}
+
+.splite-center {
+	align-items: center;
+}
+
+.splite-column {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-direction: column;
+}
+
+.splite-between {
+	justify-content: space-between;
+}
+
+.no-gap {
+	gap: 0;
+}

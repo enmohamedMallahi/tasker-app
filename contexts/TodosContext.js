@@ -7,6 +7,9 @@ import {
 	where,
 	onSnapshot,
 	addDoc,
+	setDoc,
+	doc,
+	deleteDoc,
 } from 'firebase/firestore';
 
 const TodosContext = createContext();
@@ -55,8 +58,35 @@ export const TodosProvider = ({ children }) => {
 		return Array.from(tags);
 	};
 
+	const changeTodoState = async (todo) => {
+		await setDoc(doc(db, user.uid, todo.id), {
+			...todo,
+			completed: !todo.completed,
+		});
+	};
+
+	const updateTodo = async (todo, newData) => {
+		await setDoc(doc(db, user.uid, todo.id), {
+			...todo,
+			...newData,
+		});
+	};
+
+	const deleteTodo = async (todo) => {
+		await deleteDoc(doc(db, user.uid, todo.id));
+	};
+
 	return (
-		<TodosContext.Provider value={{ todos, getTags, addTodo }}>
+		<TodosContext.Provider
+			value={{
+				todos,
+				getTags,
+				addTodo,
+				changeTodoState,
+				deleteTodo,
+				updateTodo,
+			}}
+		>
 			{loading ? null : children}
 		</TodosContext.Provider>
 	);

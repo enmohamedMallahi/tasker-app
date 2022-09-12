@@ -2,12 +2,12 @@
 import { useState, useEffect } from 'react';
 import { useTodos } from '../contexts/TodosContext';
 
-const TodoForm = ({ values }) => {
+const NewTodo = () => {
 	const { addTodo, getTags } = useTodos();
 	const tags = ['inbox', 'home', 'work', 'learning'];
 
-	const [title, setTitle] = useState(values ? values.title : '');
-	const [tag, setTag] = useState(values ? values.tag : tags[0]);
+	const [title, setTitle] = useState('');
+	const [tag, setTag] = useState(tags[0]);
 
 	async function handleAddTodo(e) {
 		e.preventDefault();
@@ -48,4 +48,4 @@ const TodoForm = ({ values }) => {
 	);
 };
 
-export default TodoForm;
+export default NewTodo;

@@ -8,6 +8,7 @@ const NewTodo = () => {
 
 	const [title, setTitle] = useState('');
 	const [tag, setTag] = useState(tags[0]);
+	const [urgency, setUrgency] = useState(0);
 
 	async function handleAddTodo(e) {
 		e.preventDefault();
@@ -19,6 +20,7 @@ const NewTodo = () => {
 			title,
 			completed: false,
 			tag,
+			urgency,
 		});
 		setTitle('');
 	}
@@ -40,7 +42,20 @@ const NewTodo = () => {
 						</option>
 					))}
 				</select>
-				<button className='btn' type='submit'>
+
+				<label htmlFor='urgency'>Urgency of the task</label>
+				<input
+					type='range'
+					value={urgency}
+					onChange={(e) => setUrgency(e.target.default)}
+					name='urgency'
+					min='1'
+					max='5'
+					step='1'
+					id='urgency'
+				/>
+
+				<button className='btn-primary' type='submit'>
 					Add
 				</button>
 			</form>

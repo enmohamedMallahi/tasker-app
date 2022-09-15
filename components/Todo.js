@@ -54,7 +54,7 @@ export default function Todo({ todo }) {
 							></path>
 						</svg>
 					</button>
-					<h4 className='todos-item_title'>{todo.title}</h4>
+					<p className='todo-title'>{todo.title}</p>
 				</div>
 
 				<div className='todo-actions splite-row'>

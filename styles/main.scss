@@ -1,5 +1,4 @@
-$primary-color: #cd473b;
-
+@import 'config';
 @import 'utilities';
 @import 'modal';
 @import 'form';
@@ -19,14 +18,32 @@ h2,
 h3,
 h4 {
 	margin: 0;
+	text-transform: capitalize;
 }
 
-// Main
+// Main Layout
 main {
-	margin-left: 13rem;
+	margin-left: $sidebar-width;
 	position: absolute;
-	width: calc(100vw - 13rem);
+	width: calc(100vw - $sidebar-width);
 	right: 0;
+}
+
+aside {
+	min-height: calc(100vh - $navbar-height);
+	font-size: 14px;
+	width: $sidebar-width;
+	position: absolute;
+	top: $navbar-height;
+
+	svg {
+		width: 20px;
+	}
+
+	background-color: #fafafa;
+	& > div:hover {
+		cursor: pointer;
+	}
 }
 
 @media screen and (max-width: 700px) {
@@ -35,6 +52,9 @@ main {
 		margin-left: 0;
 		position: static;
 		right: 0;
+	}
+	aside {
+		display: none;
 	}
 }
 
@@ -46,16 +66,32 @@ main {
 	justify-content: space-between;
 	align-items: center;
 	gap: 1rem;
-	height: 3.5rem;
+	height: $navbar-height;
 	background-color: $primary-color;
 	color: #fff;
 
 	img {
 		width: 28px;
 		height: 28px;
-		// display: none;
+	}
+
+	.search-bar {
+		background: transparent;
+		color: #fff;
+
+		&::placeholder {
+			color: #fff;
+		}
 	}
 }
+
+@media screen and (max-width: 700px) {
+	.navbar form {
+		display: none !important;
+	}
+}
+
+// Tasker Form
 
 .tasker-form {
 	width: 100%;
@@ -71,101 +107,7 @@ main {
 	}
 }
 
-.card {
-	border: 1px solid $primary-color;
-	border-radius: 5px;
-	padding: 0 1rem;
-
-	h4 {
-		word-wrap: break-word;
-	}
-}
-
-.tag {
-	background-color: $primary-color;
-	padding: 0.5rem;
-	color: #fff;
-	border-radius: 5px;
-	justify-self: flex-end;
-}
-
-section {
-	display: grid;
-	grid-template-columns: repeat(1, 1fr 4fr);
-}
-
-aside {
-	min-height: calc(100vh - 3.5rem);
-	font-size: 14px;
-	width: 13rem;
-	position: absolute;
-	top: 3.5rem;
-
-	svg {
-		width: 20px;
-	}
-
-	background-color: #fafafa;
-	& > div:hover {
-		cursor: pointer;
-	}
-}
-
-.mb {
-	margin-bottom: 1.5rem;
-}
-.mt {
-	margin-top: 1rem;
-}
-
-@media screen and (max-width: 700px) {
-	nav form {
-		display: none !important;
-	}
-
-	aside {
-		display: none;
-	}
-
-	section {
-		display: block;
-	}
-}
-
-.search-bar {
-	background: transparent;
-	color: #fff;
-
-	&::placeholder {
-		color: #fff;
-	}
-}
-
-// .rotate-hover:hover {
-// 	transform: rot;
-// }
-
-.rounded {
-	border-radius: 50%;
-}
-
-.modal {
-	@extend .card;
-	padding: 1rem;
-	position: absolute;
-	width: 400px;
-}
-
-.signup {
-	// background-color: rgb(160, 142, 142);
-	@extend .card;
-	padding: 1rem;
-	height: 50vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
+// Todo Item
 
 .todo {
 	border-bottom: 1px solid #ccc;
@@ -174,6 +116,10 @@ aside {
 	&-actions {
 		visibility: hidden;
 		transition: visibility ease;
+	}
+
+	&-title {
+		margin: 0;
 	}
 
 	&:hover {
@@ -196,9 +142,6 @@ aside {
 }
 
 // Checkbox circle
-.round {
-	position: relative;
-}
 
 .check-btn {
 	width: 24px;
@@ -221,6 +164,45 @@ aside {
 		background-color: #66bb6a;
 		svg {
 			display: block;
+		}
+	}
+}
+
+// Sign Page
+
+.sign-split {
+	display: flex;
+	height: 100vh;
+	flex-direction: row;
+
+	.sign-form {
+		padding: 15px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+
+		button {
+			margin: 0 auto;
+			margin-bottom: 1rem;
+		}
+	}
+
+	#signup {
+		background-color: #cd473b;
+		color: #fff;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.sign-split {
+		flex-direction: column;
+		height: 200vh;
+
+		.sign-form {
+			height: 100vh;
 		}
 	}
 }

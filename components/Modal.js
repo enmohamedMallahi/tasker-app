@@ -7,6 +7,7 @@ function Modal({ close, children, title }) {
 			<div className='modal-container'>
 				<div className='close-btn'>
 					<button
+						className='btn-danger'
 						onClick={() => {
 							close();
 						}}

@@ -17,7 +17,7 @@ export default function Home() {
 	return (
 		<>
 			<div>
-				<h2>Today</h2>
+				<h2>All Todos</h2>
 				<section className='splite-column no-gap mb' ref={listRef}>
 					{todos.length == 0 && 'You have no todos'}
 					{todos.length !== 0 &&

@@ -8,9 +8,34 @@ export default function SignIn() {
 	const { user, signin } = useAuth();
 
 	return (
-		<div className='signup'>
-			<h1 className='mb'>Sign In</h1>
-			<div className='signup-form'>
+		<div className='sign-split'>
+			<div className='sign-form' id='signup'>
+				<h1 className='mb'>Sign Up</h1>
+
+				<input placeholder='Email' />
+				<input placeholder='Password' />
+				<p>
+					Forgot Password? <Link href='/'>Change It</Link>
+				</p>
+				<button className='btn-accent btn-icon mb'>Sign Up</button>
+			</div>
+			<div className='sign-form'>
+				<h1 className='mb'>Sign In</h1>
+
+				<button
+					className='btn btn-icon mb'
+					onClick={async (e) => await signin()}
+				>
+					<img src={GoogleIcon.src} alt='' />
+					Sign In With Google
+				</button>
+				<button
+					className='btn btn-icon mb'
+					onClick={async (e) => await signin()}
+				>
+					<img src={GoogleIcon.src} alt='' />
+					Sign In With Google
+				</button>
 				<button
 					className='btn btn-icon mb'
 					onClick={async (e) => await signin()}
@@ -19,23 +44,10 @@ export default function SignIn() {
 					Sign In With Google
 				</button>
 			</div>
-			Forgot Password? <Link href='/'>Change It</Link>
 		</div>
 	);
 }
 
 SignIn.getLayout = (page) => {
-	return (
-		<div
-			style={{
-				width: '100vw',
-				height: '100vh',
-				display: 'flex',
-				alignItems: 'center',
-				justifyContent: 'center',
-			}}
-		>
-			{page}
-		</div>
-	);
+	return <>{page}</>;
 };

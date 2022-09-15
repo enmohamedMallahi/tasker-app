@@ -29,8 +29,10 @@ export const AuthProvider = ({ children }) => {
 					displayName: user.displayName,
 					photoURL: user.photoURL,
 				});
+				router.push('/');
 			} else {
 				setUser(null);
+				router.push('/signin');
 			}
 		});
 
@@ -38,14 +40,6 @@ export const AuthProvider = ({ children }) => {
 
 		return () => unsubscribe();
 	}, []);
-
-	useEffect(() => {
-		if (!user) {
-			router.push('/signin');
-		} else {
-			router.push('/');
-		}
-	}, [user]);
 
 	const signin = async (email, password) => {
 		try {
